@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="10215 수학꿈끼">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="승연">
+  <title>Jump & Gravity Visualizer</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- JS -->
+  <script src="index.js"></script>
+
+  <!-- 시작 오버레이 -->
+  <div id="startOverlay">
+    <img src="start.png" alt="start image">
+    <p class="startText">시작</p>
+  </div>
+
+  <div class="shell">
+    <!-- 왼쪽 패널 -->
+    <aside class="panel">
+      <div class="panelHead">
+        <div class="titleRow">
+          <h1>변인요소</h1>
+          <span class="pill">수학꿈끼</span>
+        </div>
+        <p class="sub">
+          <span class="mono">vy -= g·dt</span>,
+          <span class="mono">y += vy·dt</span>
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="label">중력 g</div>
+          <div class="value mono" id="gText">9.8</div>
+        </div>
+        <input id="g" type="range" min="1" max="25" step="0.1" value="9.8" />
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="label">점프 초기속도 v₀</div>
+          <div class="value mono" id="v0Text">10.0</div>
+        </div>
+        <input id="v0" type="range" min="2" max="25" step="0.1" value="10.0" />
+      </div>
+
+      <div class="card two">
+        <label class="check">
+          <input id="follow" type="checkbox" checked />
+          <span>카메라 따라가기</span>
+        </label>
+        <label class="check">
+          <input id="autoGraph" type="checkbox" checked />
+          <span>그래프 자동 스케일</span>
+        </label>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="label">시뮬레이션 Y축 비율</div>
+          <div class="value mono" id="simZoomText">1.0×</div>
+        </div>
+        <input id="simZoom" type="range" min="0.5" max="3" step="0.1" value="1.0" />
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="label">그래프 Y축 비율</div>
+          <div class="value mono" id="graphZoomText">1.0×</div>
+        </div>
+        <input id="graphZoom" type="range" min="0.5" max="3" step="0.1" value="1.0" />
+      </div>
+
+      <div class="btnRow">
+        <button class="btn primary" id="jumpBtn">점프</button>
+        <button class="btn" id="resetBtn">초기화</button>
+      </div>
+
+      <div class="status mono" id="info">
+        t=0.00 y=0.00 vy=0.00
+      </div>
+
+      <div class="hint">
+        이것은 10215 우승연의 수학꿈끼<br>
+        오타가 있거나 코드 에러가 있어도<br>
+        <b>눈 감고 모른 척 해</b>
+      </div>
+    </aside>
+
+    <!-- 오른쪽 -->
+    <main class="main">
+      <section class="pane">
+        <header class="paneHead">
+          <div class="paneTitle">시뮬레이션</div>
+          <div class="paneSub mono">y(m), vy(m/s)</div>
+        </header>
+        <canvas id="sim"></canvas>
+      </section>
+
+      <section class="pane">
+        <header class="paneHead">
+          <div class="paneTitle">점프 그래프</div>
+          <div class="paneSub mono">y(t)</div>
+        </header>
+        <canvas id="graph"></canvas>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>
